@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Bootstrap Example</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<style>
+</style>
+</head>
+<body>
+	<div class="container" id="dvContainer">
+
+		<div class="container-fluid text-center">
+			<br> <br>
+
+			<div class="row content">
+
+				<div class="col-sm-12 ">
+					<h1 style="text-align: center;" class="headertext">NOTICE</h1>
+					<hr>
+
+					<table>
+						<tr>
+							<td><h4>Subject:-</h4></td>
+							<td style="width: 73%; text-align: left"><h4
+									th:text="${userData.type}"></h4></td>
+							<td><h4>Date:-</h4></td>
+							<td><h4 th:text="${userData.date}"></h4></td>
+
+
+
+						</tr>
+					</table>
+
+
+
+
+					<div class="col-sm-12 text-center">
+						<p th:text="${userData.message}"
+							style="text-align: justify; text-justify: inter-word;"></p>
+						<br> <br> <br>
+						<table>
+							<tr>
+								<td><h4 th:text="${userData.department}"></h4></td>
+								<td style="width: 100%"></td>
+								<td>
+									<!-- <h4 th:text="${userData.signature}"></h4> --> 
+									
+									<h4>Signature:-</h4>
+									<img
+									th:src="@{'/admin/dist/img/'+ ${userData.photos}}"
+									alt="Profile"
+									style="width: 75px; border-radius: 60px; height: 70px; width: 70px;">
+
+								</td>
+							</tr>
+						</table>
+					</div>
+
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</div>
+
+
+	<div class="container-fluid text-center">
+		<br> <a class="btn btn-Info" onclick="downloadPdf()">Download</a>
+	</div>
+
+
+
+</body>
+
+
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script>
+	function downloadPdf() {
+		var header = $('.headertext').text();
+		var divContents = $("#dvContainer").html();
+		var printWindow = window.open('', '', 'height=400,width=800');
+		printWindow.document.write('<html><head><title>' + header + '</title>');
+		printWindow.document.write('</head><body >');
+		printWindow.document.write(divContents);
+		printWindow.document.write('</body></html>');
+		printWindow.document.close();
+		printWindow.print();
+	}
+</script>
+</html>

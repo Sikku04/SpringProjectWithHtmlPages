@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<link rel="stylesheet" th:href="@{/admin/dist/css/Login.css}">
+</head>
+<body>
+
+
+	<div class="wrapper">
+		<div class="title-text">
+			<div class="title login">
+				Login Form<br> <span class="LfailMsg"
+					style="font-size: 16px; color: red"></span><br> <span
+					class="SingUpMSG" style="font-size: 16px; color: red"
+					th:text="${success}"></span><br> <span class="LsuccessMsg"
+					style="font-size: 16px; color: green"></span>
+
+			</div>
+			<div class="title signup">
+				Signup Form<br> <span class="success "
+					style="font-size: 16px; color: green"></span>
+			</div>
+
+
+		</div>
+		<div class="form-container">
+			<div class="slide-controls">
+				<input type="radio" name="slide" id="login" checked> <input
+					type="radio" name="slide" id="signup"> <label for="login"
+					class="slide login">Login</label> <label for="signup"
+					class="slide signup">Signup</label>
+				<div class="slider-tab"></div>
+
+			</div>
+			<div class="form-inner">
+
+
+				<!-- Login form  start -->
+
+				<form class="login" method="post">
+					<div class="field">
+						<input class="email" type="text" id="Lemail"
+							placeholder="Email Address" required>
+					</div>
+					<br> <span class="LemailErr"
+						style="font-size: 16px; color: red"></span>
+
+					<div class="field">
+						<input class="text" type="password" id="Lpassword"
+							placeholder="Password" required>
+					</div>
+					<br> <span class="LpasswordErr"
+						style="font-size: 16px; color: red"></span>
+
+					<div class="pass-link">
+						<a th:href="@{forgotPage}">Forgot password?</a>
+					</div>
+					<div class="field btn">
+						<div class="btn-layer"></div>
+						<input type="button" value="Login" onclick="loginUserForm()">
+					</div>
+					<div class="signup-link">
+						Not a member? <a href="">Signup now</a>
+					</div>
+				</form>
+
+
+
+
+
+				<!-- Login form  End -->
+
+
+
+				<!-- SignUP form  Start -->
+
+				<form action="SignUpWithImage" method="post"
+					enctype="multipart/form-data">
+					<div class="field">
+
+
+						<input class="text" type="text" name="name" placeholder="Username"
+							id="name" required>
+					</div>
+					<br> <span class="nameErr" style="font-size: 16px; color: red"></span>
+
+					<div class="field">
+
+
+						<input class="text email" type="email" name="email" id="email"
+							placeholder="Email" onkeyup="emailValidation(this.value)">
+					</div>
+					<br> <span class="emailErr"
+						style="font-size: 16px; color: red"></span>
+
+
+					<div class="field">
+
+						<input type="password" id="password" name="password"
+							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+							placeholder="Password" required>
+					</div>
+					<br> <span class="passwordErr"
+						style="font-size: 16px; color: red"></span>
+
+					<div class="field">
+						<input type="file" name="file" id="image">
+					</div>
+					<br> <span class="imageErr"
+						style="font-size: 16px; color: red"></span>
+
+
+					<div class="hideBox">
+						<span id="message">
+							<h4>Passwords must meet these requirements:</h4>
+							<ul>
+								<li id="letter" class="invalid">A lowercase letter</li>
+								<li id="capital" class="invalid">A capital uppercase letter</li>
+								<li id="number" class="invalid">A number</li>
+								<li id="length" class="invalid">Minimum 8 characters</li>
+							</ul>
+						</span>
+					</div>
+
+
+
+
+					<div class="field btn">
+						<div class="btn-layer"></div>
+						<input type="submit" value="Signup">
+					</div>
+
+
+				</form>
+
+				<!-- SignUP form  End -->
+
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+
+
+	<script type="text/javascript"
+		src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+	<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+	<script th:src="@{/admin/dist/js/pages/Login.js}"></script>
+
+
+</body>
+</html>

@@ -1,0 +1,74 @@
+
+<div th:include="/admin/layout/header"></div>
+
+<style>
+.wrapper, body, html {
+	min-height: 15%;
+}
+</style>
+
+<div class="container">
+
+
+	<div class="row gutters">
+		<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12"></div>
+
+		<div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+
+			<div class="container">
+				<h2>All Holiday</h2>
+
+				<table class="table table-hover">
+					<thead>
+						<tr>
+							<th>S.NO</th>
+							<th>NoticeType</th>
+							<th>NoticeDate</th>
+							<th>Department</th>
+
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="userData, index :${UserDataFromDb}">
+							<td th:text="${index.count}"></td>
+							<td th:text="${userData.type}"></td>
+							<td th:text="${userData.date}"></td>
+							<td th:text="${userData.department}"></td>
+
+
+							<td><a type="button" class="btn btn-success"
+								th:href="@{/demo/editHoliday/{id}(id=${userData.id})}">Edit</a>
+								<a type="button" class="btn btn-danger"
+								th:href="@{/demo/deleteHoliday/{id}(id=${userData.id})}">Delete</a>
+
+
+
+								<a class="btn btn-Info"
+								th:href="@{/demo/holidayPage/{id}(id=${userData.id})}"><i
+									class="fa fa-eye "></i> View</a></td>
+
+
+						</tr>
+
+
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+	<div th:include="/admin/layout/footer"></div>
+</div>
+
+
+
+
+

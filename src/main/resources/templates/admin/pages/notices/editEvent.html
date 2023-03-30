@@ -1,0 +1,263 @@
+
+<div th:include="/admin/layout/header"></div>
+
+<style>
+.wrapper, body, html {
+	min-height: 15%;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+	background-color: #04AA6D;
+	border: none;
+	color: white;
+	padding: 5px 12px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+/*Profile Pic Start*/
+.picture {
+	background-color: #999999;
+	border: 4px solid #CCCCCC;
+	color: #FFFFFF;
+	margin: 0px auto;
+	overflow: hidden;
+	transition: all 0.2s;
+	-webkit-transition: all 0.2s;
+	width: 75px;
+	border-radius: 60px;
+	height: 70px;
+	width: 70px;
+}
+
+.picture:hover {
+	border-color: #2ca8ff;
+}
+
+.picture input[type="file"] {
+	cursor: pointer;
+	display: block;
+	height: 100%;
+	left: 0;
+	opacity: 0 !important;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.picture-src {
+	width: 100%;
+}
+</style>
+
+
+<body class="body">
+
+	<div class="container">
+		<div class="row gutters">
+			<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12"></div>
+			<div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+
+
+
+
+
+				<div class="card h-100">
+
+					<form th:action="@{/demo/updateEvent/{id}(id=${userData.id})}"
+						method="post" enctype="multipart/form-data" id="quickForm">
+
+
+
+						<div class="card-body">
+							<div class="row gutters">
+
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+									<h6 class="mb-2 text-primary">Holidays Details</h6>
+								</div>
+
+
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Notice Type</label> <input type="text"
+											class="form-control" name="type" id="nType"
+											th:field="${userData.type}"> <span class="typeErr"
+											style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="eMail">Notice Date</label> <input type="date"
+											class="form-control" name="date" id="nDate"
+											placeholder="Enter Notice Date" th:field="${userData.date}">
+										<span class="dateErr" style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+
+
+							</div>
+							<div class="row gutters">
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="Street">Department</label> <input type="text"
+											class="form-control" name="department" id="ndepartment"
+											placeholder="Enter Department"
+											th:field="${userData.department}"> <span
+											class="departmentErr" style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="Street">Signture</label>
+
+
+
+										<div class="picture-container">
+											<div class="picture">
+												<img th:src="@{'/admin/dist/img/'+ ${userData.photos}}"
+													alt="Profile" class="picture-src" id="wizardPicturePreview">
+												<input type="file" name="file" id="wizard-picture" class="">
+											</div>
+
+
+										</div>
+
+
+
+									</div>
+								</div>
+
+
+
+
+
+							</div>
+
+							<div class="row gutters">
+
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<div class="form-group">
+
+
+										<textarea name="message" id="nmessage"
+											placeholder="Enter Message" style="width: 100%;"
+											th:field="${userData.message}"></textarea>
+										<span class="messageErr" style="font-size: 16px; color: red"></span>
+
+
+
+										<!-- 	<input type="text"
+											class="form-control" name="subject" id="nmessage"
+											placeholder="Enter Notice Subject"> <span
+											class="subjectErr" style="font-size: 16px; color: red"></span> -->
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<div class="text-center">
+
+										<!-- <input type="submit" value="addTeacher"> -->
+
+										<button type="button" class="btn btn-info"
+											onclick="formValidation()" id="change1" disabled>Submit</button>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+
+
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+	<div th:include="/admin/layout/footer"></div>
+
+	<script>
+		$(document).ready(function() {
+			$("#wizard-picture").change(function() {
+				readURL(this);
+			});
+		});
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					$('#wizardPicturePreview').attr('src', e.target.result)
+							.fadeIn('slow');
+				}
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+	</script>
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			document.getElementById("change1").disabled = false;
+
+		});
+
+		function formValidation() {
+
+			var nType = $("#nType").val();
+			var nDate = $("#nDate").val();
+			var ndepartment = $("#ndepartment").val();
+			var nSignature = $("#nSignature").val();
+			var nmessage = $("#nmessage").val();
+
+			var checkVal = 1;
+
+			if (nType == '') {
+
+				$('.typeErr').text('Type should not be blank');
+				checkVal = 0;
+
+			}
+
+			if (nDate == '') {
+				$('.dateErr').text("Date can't be blank");
+				checkVal = 0;
+
+			}
+			if (ndepartment == '') {
+				$('.departmentErr').text("department can't be blank");
+				checkVal = 0;
+
+			}
+			if (nSignature == '') {
+				$('.signtureErr').text("Signature can't be blank");
+				checkVal = 0;
+
+			}
+
+			if (nmessage == '') {
+				$('.messageErr').text("message can't be blank");
+				checkVal = 0;
+
+			}
+
+			if (checkVal == 1) {
+
+				$('#quickForm').submit();
+
+			}
+
+		}
+	</script>

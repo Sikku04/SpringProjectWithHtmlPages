@@ -1,0 +1,210 @@
+
+
+
+<link rel="stylesheet"
+	th:href="@{/admin/plugins/tempusdominus-bootstrap-4/css/editProfileMain.css}">
+
+<div th:include="/admin/layout/header"></div>
+
+<style>
+.wrapper, body, html {
+	min-height: 15%;
+}
+</style>
+
+
+<body class="body">
+
+
+
+	<div class="container">
+
+
+		<div class="row gutters">
+			<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12"></div>
+			<div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+					<div class="card-body">
+						<div class="account-settingsP">
+							<div class="user-profileP">
+								<div class="user-avatarP">
+
+									<input type="image"
+										th:src="@{'/admin/dist/img/'+ ${userData.photos}}"
+										width="75px;"
+										style="border-radius: 60px; height: 70px; width: 70px;"
+										name="file" id="coverPreview" /> <input type="file"
+										style="display: none;" />
+
+								</div>
+								<h5 class="user-name" th:text="${userData.name}"></h5>
+								<h6 class="user-email" th:text="${userData.email}"></h6>
+							</div>
+							<div class="aboutP">
+								<h5 class="mb-2 text-primary" style="text-align: center">About</h5>
+								<p style="text-align: center">I'm Yuki. Full Stack Designer
+									I enjoy creating user-centric, delightful and human
+									experiences.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+			<div class="col-xl-7 col-lg-7 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+
+					<form th:action="@{/demo/editStudentById/{id}(id=${userData.id})}"
+						method="post" enctype="multipart/form-data">
+
+						<div class="card-body">
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<img th:src="@{'/admin/dist/img/'+ ${userData.photos}}"
+										alt="Profile" class="picture-src" style="display: none;">
+									<input type="file" name="file" id="cover"
+										style="display: none;"> <input
+										th:field="${userData.photos}" type="hidden" name="userImg"
+										id="userImg"> <input th:field="${userData.id}"
+										type="hidden" name="userImg" id="UUserId">
+
+
+									<h6 class="mb-2 text-primary">Personal Details</h6>
+								</div>
+								<input type="hidden" id="userId" th:field="${userData.id}">
+
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Full Name</label> <input type="text"
+											class="form-control" name="name" th:field="${userData.name}"
+											id="fullName" placeholder="Enter full name">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="eMail">Email</label> <input type="email"
+											class="form-control" name="email"
+											th:field="${userData.email}" id="eMail"
+											placeholder="Enter email ID">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="phone">Phone</label> <input type="text"
+											class="form-control" name="Phone" id="phone"
+											th:field="${userData.Phone}" placeholder="Enter phone number">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="website">Password</label>
+										<!-- <input type="url" class="form-controlP"  id="website" placeholder="Website url">th:field="${userData.photos}" -->
+										<input type="text" class="form-control" name="password"
+											th:field="${userData.password}" id="password"
+											placeholder="Password">
+										<!-- th:field="${userData.photos}" -->
+									</div>
+								</div>
+							</div>
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<h6 class="mt-3 mb-2 text-primary">Address</h6>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="Street">Street</label> <input type="text"
+											class="form-control" name="Street"
+											th:field="${userData.Street}" id="Street"
+											placeholder="Enter Street">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="ciTy">City</label> <input type="text"
+											class="form-control" id="ciTy" name="City"
+											th:field="${userData.City}" placeholder="Enter City">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="sTate">State</label> <input type="text"
+											class="form-control" id="sTate" name="State"
+											th:field="${userData.State}" placeholder="Enter State">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="zIp">Zip Code</label><input type="text"
+											class="form-control" id="zIp" name="ZipCode"
+											th:field="${userData.ZipCode}" placeholder="Zip Code">
+									</div>
+								</div>
+							</div>
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<div class="text-right">
+
+										<button type="submit" id="submit" name="submit"
+											class="btn btn-primary" onclick="editStudent()">Submit</button>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+
+</body>
+
+<script th:src="@{/admin/dist/js/pages/editUser.js}"></script>
+
+
+<script>
+
+let coverPreview = document.getElementById('coverPreview');
+
+
+let cover = document.getElementById('cover');
+
+coverPreview.addEventListener('click', _ => cover.click());
+
+cover.addEventListener("change", _ => {
+	let file = cover.files[0];
+	let reader = new FileReader();
+	reader.onload = function() {
+		coverPreview.src = reader.result;
+	}
+	reader.readAsDataURL(file);
+});
+
+/* 
+function editStudent() {
+
+	sessionStorage.clear();
+	var fullName = $("#fullName").val();
+	var userImg = $("#userImg").val();
+	var userID = $("#UUserId").val();
+
+
+
+	sessionStorage.setItem("loginUserName", fullName);
+	sessionStorage.setItem("loginUserImg", userImg);
+	sessionStorage.setItem("userId", userID);
+
+}
+ */
+</script>
+
+
+
+<div th:include="/admin/layout/footer"></div>
+
+

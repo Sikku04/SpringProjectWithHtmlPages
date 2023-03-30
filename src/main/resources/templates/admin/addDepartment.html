@@ -1,0 +1,132 @@
+
+<div th:include="/admin/layout/header"></div>
+
+<style>
+.wrapper, body, html {
+	min-height: 15%;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+	background-color: #04AA6D;
+	border: none;
+	color: white;
+	padding: 5px 12px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+</style>
+
+<body class="body">
+
+
+
+	<div class="container">
+
+
+		<div class="row gutters">
+			<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12"></div>
+			<div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+
+
+
+
+
+				<div class="card h-100">
+
+					<form action="addDepartment" method="post"
+						enctype="multipart/form-data" id="quickForm">
+
+						<div class="card-body">
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+
+
+
+									<h6 class="mb-2 text-primary">Department Details</h6>
+								</div>
+
+
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Department Name</label> <input
+											type="text" class="form-control" name="DeptName"
+											id="fullName" placeholder="Enter DeptName">
+											<span
+											class="fullNameErr" style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="eMail">Department Location</label> <input
+											type="text" class="form-control" name="DeptLocation"
+											id="eMail" placeholder="Enter DeptLocation">
+											<span class="eMailErr"
+											style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+
+
+							</div>
+
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<div class="text-right">
+
+									<!-- 	<input type="submit" value="addDepartment"> -->
+									
+									<button type="button" class="btn btn-info"
+											onclick="formValidation()" id="change" disabled>addDepartment</button>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+
+
+				</div>
+
+
+			</div>
+		</div>
+
+		<div th:include="/admin/layout/footer"></div>
+
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				document.getElementById("change").disabled = false;
+
+			});
+
+			function formValidation() {
+
+				var fullName = $("#fullName").val();
+				var eMail = $("#eMail").val();
+
+				if (fullName == '') {
+					$('.fullNameErr').text('DeptName should not be blank');
+
+				}
+
+				if (eMail == '') {
+					$('.eMailErr').text("DeptLocation can't be blank");
+
+				} else {
+
+					//$('#change').attr('disabled', 'disabled');
+
+					$('#quickForm').submit();
+
+				}
+
+			}
+		</script>
+
+
+
+	</div>

@@ -1,0 +1,111 @@
+
+
+
+<link rel="stylesheet"
+	th:href="@{/admin/plugins/tempusdominus-bootstrap-4/css/editProfileMain.css}">
+
+<div th:include="/admin/layout/header"></div>
+
+<style>
+.wrapper, body, html {
+	min-height: 15%;
+}
+</style>
+
+
+<body class="body">
+
+
+
+	<div class="container">
+
+
+		<div class="row gutters">
+			<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12"></div>
+
+
+			<div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+				<div class="card h-100">
+
+					<form
+						th:action="@{/demo/addDepartmentById/{id}(id=${userData.DeptId})}"
+						method="post" enctype="multipart/form-data">
+
+						<div class="card-body">
+							<div class="row gutters">
+
+								<input type="hidden" id="userId" th:field="${userData.DeptId}">
+
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">DeptName</label> <input type="text"
+											class="form-control" name="DeptName"
+											th:field="${userData.DeptName}" id="DeptName"
+											placeholder="Enter DeptName">
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">DeptName</label> <input type="text"
+											class="form-control" name="DeptLocation"
+											th:field="${userData.DeptLocation}" id="DeptLocation"
+											placeholder="Enter DeptLocation">
+									</div>
+								</div>
+
+
+							</div>
+
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<div class="text-right">
+
+										<button type="submit" id="submit" name="submit"
+											class="btn btn-primary">Submit</button>
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+
+
+
+		</div>
+	</div>
+
+</body>
+
+<script th:src="@{/admin/dist/js/pages/editUser.js}"></script>
+
+<!-- 
+<script>
+
+let coverPreview = document.getElementById('coverPreview');
+
+
+let cover = document.getElementById('cover');
+
+coverPreview.addEventListener('click', _ => cover.click());
+
+cover.addEventListener("change", _ => {
+	let file = cover.files[0];
+	let reader = new FileReader();
+	reader.onload = function() {
+		coverPreview.src = reader.result;
+	}
+	reader.readAsDataURL(file);
+});
+
+
+
+</script> -->
+
+
+
+<div th:include="/admin/layout/footer"></div>
+
+

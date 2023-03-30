@@ -1,0 +1,222 @@
+
+<div th:include="/admin/layout/header"></div>
+
+<style>
+.wrapper, body, html {
+	min-height: 15%;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+	background-color: #04AA6D;
+	border: none;
+	color: white;
+	padding: 5px 12px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.form-control1 {
+	display: block;
+	width: 100%;
+	height: calc(2.25rem + 2px);
+	padding: 0.375rem 0.75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	box-shadow: inset 0 0 0 transparent;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+</style>
+
+
+
+
+
+
+<body class="body">
+
+
+
+	<div class="container">
+
+
+		<div class="row gutters">
+			<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12"></div>
+			<div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+
+
+
+
+
+				<div class="card h-100">
+
+					<!-- <form action="addExam" method="post"
+						enctype="multipart/form-data" id="quickForm"> -->
+
+
+					<form action="addFeeWithSignature" method="post"
+						enctype="multipart/form-data">
+
+
+
+
+						<div class="card-body">
+							<div class="row gutters">
+
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+									<h6 class="mb-2 text-primary">Fee Details</h6>
+								</div>
+
+
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Notice Type</label> <input type="text"
+											class="form-control" name="type" id="nType"
+											placeholder="Enter Notice Type"> <span
+											class="typeErr" style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="eMail">Notice Date</label> <input type="date"
+											class="form-control" name="date" id="nDate"
+											placeholder="Enter Notice Date"> <span
+											class="dateErr" style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+
+
+							</div>
+							<div class="row gutters">
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="Street">Department</label> <input type="text"
+											class="form-control" name="department" id="ndepartment"
+											placeholder="Enter Department"> <span
+											class="departmentErr" style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="Street">Signture</label> 
+										
+										
+										<input class="form-control1" type="file" name="file" id="image">
+										
+									</div>
+								</div>
+
+
+
+
+
+							</div>
+
+							<div class="row gutters">
+
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<div class="form-group">
+
+
+										<textarea name="message" id="nsubject"
+											placeholder="Enter Message" style="width: 100%;"></textarea>
+										<span class="subjectErr" style="font-size: 16px; color: red"></span>
+
+
+
+										<!-- 	<input type="text"
+											class="form-control" name="subject" id="nsubject"
+											placeholder="Enter Notice Subject"> <span
+											class="subjectErr" style="font-size: 16px; color: red"></span> -->
+									</div>
+								</div>
+							</div>
+
+
+
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<div class="text-center">
+
+										<!-- <input type="submit" value="addTeacher"> -->
+
+										<input type="submit" value="addExam">
+
+										<!-- <button type="button" class="btn btn-info"
+											onclick="formValidation()" id="change" disabled>addStudent</button> -->
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+
+
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+
+
+	<div th:include="/admin/layout/footer"></div>
+
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			document.getElementById("change").disabled = false;
+
+		});
+
+		function formValidation() {
+
+			var nType = $("#nType").val();
+			var nDate = $("#nDate").val();
+			var nsubject = $("#nsubject").val();
+			var nmessage = $("#nmessage").val();
+			var ndepartment = $("#ndepartment").val();
+
+			var checkVal = 1;
+
+			if (nType == '') {
+				$('.typeErr').text('Type should not be blank');
+
+			}
+
+			if (nDate == '') {
+				$('.dateErr').text("Date can't be blank");
+
+			}
+
+			if (nsubject == '') {
+				$('.subjectErr').text("subject can't be blank");
+
+			}
+
+			if (nmessage == '') {
+				$('.messageErr').text("message can't be blank");
+
+			}
+
+			if (ndepartment == '') {
+				$('.departmentErr').text("department can't be blank");
+
+			} else {
+
+				//	$('#change').attr('disabled', 'disabled');
+
+				$('#quickForm').submit();
+
+			}
+
+		}
+	</script>

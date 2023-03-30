@@ -1,0 +1,154 @@
+
+
+
+
+
+<div th:include="/admin/layout/header"></div>
+
+<style>
+.wrapper, body, html {
+	min-height: 15%;
+}
+
+.card-header {
+	padding: 0.2rem 1.25rem;
+	/* margin-bottom: 0; */
+	background-color: #ffffff;
+	border-bottom: 0px;
+}
+
+.card-body {
+	padding: 0rem 1.25rem;
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: 10px;
+}
+
+.card {
+	border-radius: 0px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.flex-wrap {
+	margin-bottom: -35px;
+}
+
+div.dataTables_wrapper div.dataTables_paginate {
+	margin-top: -25px;
+}
+
+.page-item.active .page-link {
+	z-index: 1;
+	color: #fff;
+	background-color: #5D78FF;
+	border-color: #5D78FF;
+}
+</style>
+
+<div class="row">
+	<div class="col-sm-2"></div>
+	<div class="col-sm-10">
+		<div class="container">
+
+			<div class="col-md-12">
+				<div class="card">
+
+
+
+					<div class="card-body">
+
+						<table class="table table-bordered table-hover" id="table_id">
+							<thead>
+								<tr>
+									<th data-priority="1">#</th>
+									<th>EventType</th>
+									<th>Date</th>
+									<th>Department</th>
+									<th>Action</th>
+
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="userData, index :${UserDataFromDb}">
+									<td th:text="${index.count}"></td>
+									<td th:text="${userData.type}"></td>
+									<td th:text="${userData.date}"></td>
+									<td th:text="${userData.department}"></td>
+
+									<td><a type="button" class="btn btn-success"
+										th:href="@{/demo/editFee/{id}(id=${userData.id})}">Edit</a> <a
+										type="button" class="btn btn-danger"
+										th:href="@{/demo/deleteFee/{id}(id=${userData.id})}">Delete</a>
+										<a class="btn btn-Info"
+										th:href="@{/demo/feePage/{id}(id=${userData.id})}"><i
+											class="fa fa-eye "></i> View</a></td>
+
+
+								</tr>
+
+							</tbody>
+						</table>
+
+					</div>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+<div th:include="/admin/layout/footer"></div>
+</div>
+
+
+
+<link
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!-- Datatable Dependency start -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.css" />
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript"
+	src="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/b-1.6.1/b-colvis-1.6.1/b-html5-1.6.1/b-print-1.6.1/r-2.2.3/datatables.min.js"></script>
+
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('#table_id').DataTable({
+
+			dom : 'Bfrtip',
+			responsive : true,
+			pageLength : 25,
+
+			buttons : [ 'excel', 'pdf', 'print' ]
+
+		});
+	});
+</script>
+
+
+
+
+
+
+
+

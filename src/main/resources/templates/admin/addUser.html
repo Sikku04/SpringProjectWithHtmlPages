@@ -1,0 +1,237 @@
+
+<div th:include="/admin/layout/header"></div>
+
+<style>
+.wrapper, body, html {
+	min-height: 15%;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+	background-color: #04AA6D;
+	border: none;
+	color: white;
+	padding: 5px 12px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+</style>
+
+<body class="body">
+
+
+
+	<div class="container">
+
+
+		<div class="row gutters">
+			<div class="col-xl-2 col-lg-2 col-md-12 col-sm-12 col-12"></div>
+			<div class="col-xl-10 col-lg-10 col-md-12 col-sm-12 col-12">
+
+				<div class="card h-100">
+
+					<form action="addStudent" method="post"
+						enctype="multipart/form-data" id="quickForm">
+
+						<div class="card-body">
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+
+									<h6 class="mb-2 text-primary">Personal Details</h6>
+
+									<span style="font-size: 16px; color: red" th:text="${success}"></span>
+								</div>
+
+
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="fullName">Full Name</label> <input type="text"
+											class="form-control" name="name" id="fullName"
+											placeholder="Enter full name"> <span
+											class="fullNameErr" style="font-size: 16px; color: red"></span>
+
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="eMail">Email</label> <input type="email"
+											class="form-control" name="email" id="eMail"
+											placeholder="Enter email ID"> <span class="eMailErr"
+											style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="phone">Phone</label> <input type="text"
+											class="form-control" name="Phone" id="phoneNo"
+											placeholder="Enter phone number"> <span
+											class="phoneErr" style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="website">Password</label>
+										<!-- <input type="url" class="form-controlP"  id="website" placeholder="Website url">th:field="${userData.photos}" -->
+										<input type="text" class="form-control" name="password"
+											id="password" placeholder="Password"> <span
+											class="passwordErr" style="font-size: 16px; color: red"></span>
+
+									</div>
+								</div>
+							</div>
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<h6 class="mt-3 mb-2 text-primary">Address</h6>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="Street">Street</label> <input type="text"
+											class="form-control" name="Street" id="Street"
+											placeholder="Enter Street"> <span class="StreetErr"
+											style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="ciTy">City</label> <input type="text"
+											class="form-control" id="ciTy" name="City"
+											placeholder="Enter City"> <span class="ciTyErr"
+											style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="sTate">State</label> <input type="text"
+											class="form-control" id="sTate" name="State"
+											placeholder="Enter State"> <span class="sTateErr"
+											style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+								<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+									<div class="form-group">
+										<label for="zIp">Zip Code</label><input type="text"
+											class="form-control" id="zIp" name="ZipCode"
+											placeholder="Zip Code"> <span class="zIpErr"
+											style="font-size: 16px; color: red"></span>
+									</div>
+								</div>
+							</div>
+
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<input type="file" name="file" id="cover"> <span
+										class="coverErr" style="font-size: 16px; color: red"></span>
+								</div>
+							</div>
+
+							<div class="row gutters">
+								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+									<div class="text-right">
+
+										<!-- <input type="button" value="addStudent"
+											onclick="formValidation()" id="change">
+											
+											-->
+
+
+										<button type="button" class="btn btn-info"
+											onclick="formValidation()" id="change" disabled>addStudent</button>
+
+
+
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+
+
+				</div>
+
+
+			</div>
+		</div>
+
+
+		<div th:include="/admin/layout/footer"></div>
+
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				document.getElementById("change").disabled = false;
+
+			});
+
+			function formValidation() {
+
+				var fullName = $("#fullName").val();
+				var eMail = $("#eMail").val();
+				var phone = $("#phoneNo").val();
+				var password = $("#password").val();
+				var Street = $("#Street").val();
+				var ciTy = $("#ciTy").val();
+				var sTate = $("#sTate").val();
+				var zIp = $("#zIp").val();
+				var cover = $("#cover").val();
+
+				var checkVal = 1;
+
+				if (fullName == '') {
+					$('.fullNameErr').text('Name should not be blank');
+
+				}
+
+				if (eMail == '') {
+					$('.eMailErr').text("Email can't be blank");
+
+				}
+
+				if (phone == '') {
+					$('.phoneErr').text("PhoneNo can't be blank");
+
+				}
+
+				if (password == '') {
+					$('.passwordErr').text("Password can't be blank");
+
+				}
+
+				if (Street == '') {
+					$('.StreetErr').text("Street can't be blank");
+
+				}
+
+				if (ciTy == '') {
+					$('.ciTyErr').text("ciTy can't be blank");
+
+				}
+
+				if (sTate == '') {
+					$('.sTateErr').text("sTate can't be blank");
+
+				}
+
+				if (zIp == '') {
+					$('.zIpErr').text("zIp can't be blank");
+
+				}
+
+				if (cover == '') {
+					$('.coverErr').text("Please select a file");
+
+				} else {
+
+					//	$('#change').attr('disabled', 'disabled');
+
+					$('#quickForm').submit();
+
+				}
+
+			}
+		</script>
+
+
+
+	</div>
